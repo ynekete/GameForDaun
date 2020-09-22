@@ -9,9 +9,8 @@ public class EnemyHealth : MonoBehaviour
 
     public void AddDamage(float damage)
     {
+        if (HP <= 0)
         HP -= damage;
-        Debug.Log("Text: " + HP);
-        if (HP <= 10)
         {
             Destroy(gameObject);
         }
