@@ -14,18 +14,19 @@ public class Shooting : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.forward);
-        if (Input.GetMouseButton(0))
+        curTimeout += Time.deltaTime;
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.DrawRay(gameObject.transform.position,transform.forward * hit.distance, Color.red);
-                curTimeout += Time.deltaTime;
                 if (curTimeout > timeout)
-                {                 
+                {
                     curTimeout = 0;
+                    Debug.DrawRay(gameObject.transform.position, transform.forward * hit.distance, Color.red);
                     hit.transform.GetComponent<EnemyHealth>().AddDamage(damage);
                     Debug.Log("damage");
                 }
             }
+        }
     }
-
 }
